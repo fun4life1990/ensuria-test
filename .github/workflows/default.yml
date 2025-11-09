@@ -3,7 +3,7 @@ name: Build and Test (push)
 on:
   workflow_dispatch: # Allows manual execution of the workflow
   push:
-    branches: [ feature/*, bugfix/*, fix/*, release/* ]
+    branches: [ master, dev ]
 
 jobs:
   build-and-lint:
