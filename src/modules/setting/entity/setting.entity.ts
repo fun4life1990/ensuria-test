@@ -2,7 +2,6 @@ import {
   Column,
   CreateDateColumn,
   Entity,
-  Index,
   PrimaryGeneratedColumn,
   UpdateDateColumn,
 } from 'typeorm';
@@ -18,8 +17,7 @@ export class Setting {
   @PrimaryGeneratedColumn()
   id: number;
 
-  @Column({ type: 'text' })
-  @Index({ unique: true })
+  @Column({ type: 'text', unique: true })
   variable: SettingVariable;
 
   //TODO add possibility also to store string values
