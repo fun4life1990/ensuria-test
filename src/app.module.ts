@@ -4,6 +4,7 @@ import { AppService } from './app.service';
 import { ConfigModule, ConfigService } from '@nestjs/config';
 import { TypeOrmModule } from '@nestjs/typeorm';
 import { typeOrmConfigFactory } from './config/typeorm';
+import { SystemSettingsModule } from './modules/system-settings/system-settings.module';
 
 @Module({
   imports: [
@@ -14,6 +15,7 @@ import { typeOrmConfigFactory } from './config/typeorm';
       inject: [ConfigService],
       useFactory: typeOrmConfigFactory,
     }),
+    SystemSettingsModule,
   ],
   controllers: [AppController],
   providers: [AppService],

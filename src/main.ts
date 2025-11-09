@@ -1,8 +1,9 @@
 import { NestFactory } from '@nestjs/core';
 import { AppModule } from './app.module';
 import { setupSwagger } from './swagger';
-import { VersioningType } from '@nestjs/common';
+import { Logger, ValidationPipe, VersioningType } from '@nestjs/common';
 import { useContainer } from 'class-validator';
+import { BaseAppExceptionFilter } from './utils/error/base-app-exception.filter';
 
 async function bootstrap() {
   const app = await NestFactory.create(AppModule);
@@ -10,6 +11,18 @@ async function bootstrap() {
   app.enableVersioning({
     type: VersioningType.URI,
   });
+
+  app.useGlobalFilters(
+    new BaseAppExceptionFilter(
+      new Logger(BaseAppExceptionFilter.constructor.name),
+    ),
+  );
+  app.useGlobalPipes(
+    new ValidationPipe({
+      transform: true,
+      strictGroups: true,
+    }),
+  );
 
   setupSwagger(app);
 
