@@ -6,6 +6,8 @@ import {
   HttpStatus,
 } from '@nestjs/common';
 import type { LoggerService } from '@nestjs/common';
+import { Response } from 'express';
+import { HttpArgumentsHost } from '@nestjs/common/interfaces/features/arguments-host.interface';
 
 @Catch()
 export class BaseAppExceptionFilter implements ExceptionFilter {
@@ -16,8 +18,8 @@ export class BaseAppExceptionFilter implements ExceptionFilter {
       this.logger.error(exception);
     }
 
-    const ctx = host.switchToHttp();
-    const response = ctx.getResponse();
+    const ctx: HttpArgumentsHost = host.switchToHttp();
+    const response: Response = ctx.getResponse();
 
     if (response.headersSent) {
       return;
@@ -41,7 +43,7 @@ export class BaseAppExceptionFilter implements ExceptionFilter {
       });
     }
 
-    const status = exception['status'] || HttpStatus.BAD_REQUEST;
+    const status = (exception['status'] as number) || HttpStatus.BAD_REQUEST;
     const message = exception.message || 'Bad Request';
 
     response.status(status).json({

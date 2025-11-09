@@ -15,7 +15,7 @@ export class SettingService {
     variable: SettingVariable,
     em?: EntityManager,
   ): Promise<Setting | null> {
-    return await this.settingRepository.findOneBy({
+    return this.resolveRepository(em).findOneBy({
       variable,
     });
   }
