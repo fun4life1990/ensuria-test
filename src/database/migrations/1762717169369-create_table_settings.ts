@@ -14,7 +14,7 @@ export class CreateTableSettings1762717169369 implements MigrationInterface {
     await queryRunner.query(`
         INSERT INTO setting (variable, value) VALUES ('SYSTEM_FIXED_COMMISSION_A', 450);
         INSERT INTO setting (variable, value) VALUES ('SYSTEM_PERCENTAGE_COMMISSION_B', 130);
-        INSERT INTO setting (variable, value) VALUES ('BLOCKING_SUM_D', 4000);
+        INSERT INTO setting (variable, value) VALUES ('BLOCKING_SUM_PERCENTAGE_D', 4000);
     `);
   }
 

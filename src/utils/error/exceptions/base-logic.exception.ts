@@ -3,6 +3,6 @@ export class BaseLogicException extends Error {
   constructor(message: string, status?: number) {
     super(message);
     this.name = 'BaseLogicException';
-    this.status = status || 403;
+    this.status = status || 400;
   }
 }
