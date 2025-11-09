@@ -1,0 +1,47 @@
+name: Build and Test (push)
+
+on:
+  workflow_dispatch: # Allows manual execution of the workflow
+  push:
+    branches: [ feature/*, bugfix/*, fix/*, release/* ]
+
+jobs:
+  build-and-lint:
+    name: Build
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout Repository
+        uses: actions/checkout@v4
+
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 22
+          cache: 'npm'
+
+      - name: Install Dependencies
+        run: npm ci
+
+      - name: Format check
+        run: npm run format:check
+
+      - name: Lint check
+        run: npm run lint:check
+
+  test:
+    name: Unit Test
+    runs-on: ubuntu-latest
+    needs: build-and-lint
+    steps:
+      - name: Checkout Repository
+        uses: actions/checkout@v4
+
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 22
+          cache: 'npm'
+
+      - name: Install Dependencies
+        run: npm ci
+
+      - name: Unit Test
+        run: npm run test
