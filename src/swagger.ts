@@ -1,4 +1,4 @@
-import process from 'node:process';
+import * as process from 'process';
 import { INestApplication } from '@nestjs/common';
 import { ENV_DEV, ENV_LOCAL } from './constants';
 import { DocumentBuilder, SwaggerModule } from '@nestjs/swagger';
