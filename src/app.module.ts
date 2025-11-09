@@ -5,6 +5,7 @@ import { ConfigModule, ConfigService } from '@nestjs/config';
 import { TypeOrmModule } from '@nestjs/typeorm';
 import { typeOrmConfigFactory } from './config/typeorm';
 import { SystemSettingsModule } from './modules/system-settings/system-settings.module';
+import { ShopApiModule } from './modules/shop-api/shop-api.module';
 
 @Module({
   imports: [
@@ -16,6 +17,7 @@ import { SystemSettingsModule } from './modules/system-settings/system-settings.
       useFactory: typeOrmConfigFactory,
     }),
     SystemSettingsModule,
+    ShopApiModule,
   ],
   controllers: [AppController],
   providers: [AppService],

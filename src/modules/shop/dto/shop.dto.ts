@@ -11,6 +11,7 @@ export class ShopDto {
   id: number;
 
   @ApiProperty({ type: String, example: 'Sample Shop' })
+  @Expose()
   @IsString()
   @MinLength(3)
   @MaxLength(40)
@@ -21,6 +22,7 @@ export class ShopDto {
     example: 2.73,
     description: 'Commission in percents',
   })
+  @Expose()
   @IsNumber()
   @Min(0)
   commissionValue: number;

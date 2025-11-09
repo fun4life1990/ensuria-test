@@ -2,6 +2,7 @@ import {
   Column,
   CreateDateColumn,
   Entity,
+  Generated,
   PrimaryGeneratedColumn,
   UpdateDateColumn,
 } from 'typeorm';
@@ -12,6 +13,7 @@ export class Shop {
   id: number;
 
   @Column({ type: 'uuid', unique: true })
+  @Generated('uuid')
   publicId: string;
 
   @Column({ type: 'text' })
