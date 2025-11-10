@@ -1,5 +1,5 @@
 import { Injectable } from '@nestjs/common';
-import { SettingService } from '../../setting/services/setting.service';
+import { SettingEntityService } from '../../setting/services/setting-entity.service';
 import { UpdateSettingsDto } from '../dto/requests/update-settings.dto';
 import { SettingVariable } from '../../setting/entity/setting.entity';
 import { BaseLogicException } from '../../../utils/error/exceptions/base-logic.exception';
@@ -8,7 +8,7 @@ import { DataSource } from 'typeorm';
 @Injectable()
 export class SystemSettingsService {
   constructor(
-    private readonly settingService: SettingService,
+    private readonly settingService: SettingEntityService,
     private readonly dataSource: DataSource,
   ) {}
 

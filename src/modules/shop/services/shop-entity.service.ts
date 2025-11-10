@@ -11,6 +11,10 @@ export class ShopEntityService {
     private readonly shopRepository: Repository<Shop>,
   ) {}
 
+  async findByPublicId(publicId: string) {
+    return await this.shopRepository.findOneBy({ publicId });
+  }
+
   async create(dto: CreateShopDto): Promise<Shop> {
     const shop = this.shopRepository.create(dto);
 

@@ -5,7 +5,7 @@ import { InjectRepository } from '@nestjs/typeorm';
 import { BaseLogicException } from '../../../utils/error/exceptions/base-logic.exception';
 
 @Injectable()
-export class SettingService {
+export class SettingEntityService {
   constructor(
     @InjectRepository(Setting)
     private readonly settingRepository: Repository<Setting>,
@@ -15,9 +15,7 @@ export class SettingService {
     variable: SettingVariable,
     em?: EntityManager,
   ): Promise<Setting | null> {
-    return this.resolveRepository(em).findOneBy({
-      variable,
-    });
+    return this.resolveRepository(em).findOneBy({ variable });
   }
 
   async updateSetting(

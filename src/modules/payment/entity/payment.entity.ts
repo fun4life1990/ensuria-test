@@ -3,12 +3,22 @@ import {
   CreateDateColumn,
   Entity,
   Generated,
+  JoinColumn,
+  ManyToOne,
   PrimaryGeneratedColumn,
   UpdateDateColumn,
 } from 'typeorm';
+import { Shop } from '../../shop/entity/shop.entity';
+
+export enum PaymentStatus {
+  ACCEPTED = 'ACCEPTED',
+  PROCESSED = 'PROCESSED',
+  DONE = 'DONE',
+  PAID = 'PAID',
+}
 
 @Entity()
-export class Shop {
+export class Payment {
   @PrimaryGeneratedColumn()
   id: number;
 
@@ -16,11 +26,15 @@ export class Shop {
   @Generated('uuid')
   publicId: string;
 
-  @Column({ type: 'text' })
-  name: string;
+  @ManyToOne(() => Shop, { onDelete: 'RESTRICT' })
+  @JoinColumn({ name: 'shop_id' })
+  shop: Shop;
 
-  @Column({ type: 'integer', name: 'commission_value' })
-  commissionValue: number;
+  @Column({ type: 'text' })
+  status: PaymentStatus;
+
+  @Column({ type: 'integer', unsigned: true })
+  amount: number;
 
   @CreateDateColumn({ name: 'created_at' })
   createdAt: Date;

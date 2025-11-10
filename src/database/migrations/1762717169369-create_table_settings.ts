@@ -5,7 +5,7 @@ export class CreateTableSettings1762717169369 implements MigrationInterface {
 
   public async up(queryRunner: QueryRunner): Promise<void> {
     await queryRunner.query(
-      `CREATE TABLE "setting" ("id" SERIAL NOT NULL, "variable" text NOT NULL, "value" integer NOT NULL, "createdAt" TIMESTAMP NOT NULL DEFAULT now(), "updatedAt" TIMESTAMP NOT NULL DEFAULT now(), CONSTRAINT "UQ_85cddfeedcf28a18933ff06d0b6" UNIQUE ("variable"), CONSTRAINT "PK_fcb21187dc6094e24a48f677bed" PRIMARY KEY ("id"))`,
+      `CREATE TABLE "setting" ("id" SERIAL NOT NULL, "variable" text NOT NULL, "value" integer NOT NULL, "created_at" TIMESTAMP NOT NULL DEFAULT now(), "updated_at" TIMESTAMP NOT NULL DEFAULT now(), CONSTRAINT "UQ_85cddfeedcf28a18933ff06d0b6" UNIQUE ("variable"), CONSTRAINT "PK_fcb21187dc6094e24a48f677bed" PRIMARY KEY ("id"))`,
     );
 
     await queryRunner.query(`

@@ -4,7 +4,7 @@ import { ShopEntityService } from '../../shop/services/shop-entity.service';
 import { Shop } from '../../shop/entity/shop.entity';
 
 @Injectable()
-export class ShopApiService {
+export class ShopService {
   constructor(private readonly shopService: ShopEntityService) {}
 
   async create(dto: CreateShopRequestDto): Promise<Shop> {
