@@ -13,8 +13,8 @@ export function setupSwagger(app: INestApplication) {
   }
 
   const config = new DocumentBuilder()
-    .setTitle(`Gelios (${process.env.NODE_ENV})`)
-    .setDescription('Gelios API description')
+    .setTitle(`Ensuria (${process.env.NODE_ENV})`)
+    .setDescription('Ensuria API description')
     .setVersion('0.1')
     .addSecurity('bearer', { type: 'http', scheme: 'bearer' })
     .build();
